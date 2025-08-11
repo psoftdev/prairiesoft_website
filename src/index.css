@@ -43,8 +43,17 @@ body {
 }
 .site-header {
   margin: 0;
-  padding-left: 0;
-  padding-right: 0;
+  box-shadow: 0 2px 20px rgba(0,0,0,0.15);
+}
+.site-header::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 1px;
+  background: linear-gradient(90deg, rgba(49,161,211,0), rgba(49,161,211,0.5), rgba(49,161,211,0));
+  pointer-events: none;
 }
 
 .card-dark {
@@ -125,6 +134,23 @@ a {
 .btn-secondary:hover,
 .btn-secondary:focus {
   text-decoration: none;
+}
+
+/* Modern nav link */
+.nav-link {
+  @apply no-underline text-offwhite px-3 py-2 rounded-md transition;
+}
+.nav-link:hover {
+  @apply no-underline opacity-85 bg-white/10;
+}
+.nav-link:focus {
+  @apply outline-none ring-2 ring-primary/50;
+}
+[data-theme="light"] .site-header .nav-link {
+  color: #f9f9f9;
+}
+[data-theme="light"] .site-header .nav-link:hover {
+  background-color: rgba(255,255,255,0.12);
 }
 
 /* Custom background utility */

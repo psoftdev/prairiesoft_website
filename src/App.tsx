@@ -152,17 +152,17 @@ export default function App() {
     <div className="font-sans">
       {/* Header */}
       <header className="site-header sticky top-0 z-40 border-b border-white/10 bg-secondary/70 backdrop-blur supports-[backdrop-filter]:bg-secondary/60">
-        <div className="flex h-16 items-center justify-between px-0">
+        <div className="flex h-16 items-center justify-between px-4 sm:px-6 lg:px-8">
           <a href="#top" className="inline-flex items-center gap-2" aria-label="Home">
-            <img src="/logo.svg" alt="Company logo" className="h-8 w-auto md:h-9" />
+            <img src="/logo.png" alt="Company logo" className="h-8 w-auto md:h-9" />
           </a>
-          <nav className="hidden md:flex items-center gap-6 text-base text-offwhite" aria-label="Primary">
-            <a href="#services" className="hover:opacity-80 no-underline hover:no-underline text-offwhite">Services</a>
-            <a href="#integrations" className="hover:opacity-80 no-underline hover:no-underline text-offwhite">Enterprise</a>
-            <a href="#why-us" className="hover:opacity-80 no-underline hover:no-underline text-offwhite">Why us</a>
-            <a href="#process" className="hover:opacity-80 no-underline hover:no-underline text-offwhite">Process</a>
-            <a href="#work" className="hover:opacity-80 no-underline hover:no-underline text-offwhite">Work</a>
-            <a href="#contact" className="hover:opacity-80 no-underline hover:no-underline text-offwhite">Contact</a>
+          <nav className="hidden md:flex items-center gap-2 text-base" aria-label="Primary">
+            <a href="#services" className="nav-link">Services</a>
+            <a href="#integrations" className="nav-link">Enterprise</a>
+            <a href="#why-us" className="nav-link">Why us</a>
+            <a href="#process" className="nav-link">Process</a>
+            <a href="#work" className="nav-link">Work</a>
+            <a href="#contact" className="nav-link">Contact</a>
           </nav>
           <div className="flex items-center gap-3">
             <a href="#contact" className="btn-primary" aria-label="Book a discovery call">
@@ -184,7 +184,7 @@ export default function App() {
         </div>
         {menuOpen && (
           <div className="md:hidden border-t border-white/10">
-            <div className="grid gap-2 py-3 text-sm px-0">
+            <div className="grid gap-2 py-3 text-sm px-4 sm:px-6 lg:px-8">
               {[
                 { href: '#services', label: 'Services' },
                 { href: '#integrations', label: 'Enterprise' },
