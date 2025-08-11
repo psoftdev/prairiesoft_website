@@ -212,10 +212,11 @@ export default function App() {
               <span className="badge">Cloud • AI Agents • Web</span>
             </motion.div>
             <motion.h1 {...fadeUp(0.05)} className="mt-6 text-4xl md:text-6xl font-extrabold leading-tight heading-gradient">
-              Build faster. Operate smarter. Spend less.
+              Build smarter. Ship faster.
+              <span className="block">Cloud, AI agents, web, and enterprise integrations—done right.</span>
             </motion.h1>
             <motion.p {...fadeUp(0.1)} className="mt-5 text-lg md:text-xl text-offwhite">
-              Prairiesoft is a tech consultancy helping teams move quickly with cloud, AI agents, and high‑performance web applications.
+              Prairiesoft helps teams move with confidence—from scalable cloud foundations to practical AI automations, high‑performing websites, and ERP/CRM integrations.
             </motion.p>
             <motion.div {...fadeUp(0.15)} className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-3">
               <a href="#contact" className="btn-primary" aria-label="Start a project">

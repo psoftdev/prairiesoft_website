@@ -33,6 +33,12 @@ html {
   scroll-behavior: smooth;
 }
 
+/* Ensure no default page margins cause gaps around the header */
+html, body, #root {
+  margin: 0;
+  padding: 0;
+}
+
 body {
   @apply bg-surface text-offwhite antialiased;
 }
@@ -43,6 +49,9 @@ body {
 }
 .site-header {
   margin: 0;
+  width: 100%;
+  left: 0;
+  right: 0;
   box-shadow: 0 2px 20px rgba(0,0,0,0.15);
 }
 .site-header::after {
