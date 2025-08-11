@@ -1,0 +1,207 @@
+@reference "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@theme {
+  /* Light theme (default) */
+  --color-primary: #31a1d3;
+  --color-secondary: #ffffff; /* cards/surfaces */
+  --color-surface: #f9f9f9; /* page background */
+  --color-offwhite: #0b0f1a; /* foreground text */
+  --color-emerald-500: #10b981;
+  --color-sky-500: #0ea5e9;
+  --color-indigo-500: #6366f1;
+  /* Breakpoints */
+  --breakpoint-sm: 40rem; /* 640px */
+  --breakpoint-md: 48rem; /* 768px */
+  --breakpoint-lg: 64rem; /* 1024px */
+  --breakpoint-xl: 80rem; /* 1280px */
+  --breakpoint-2xl: 96rem; /* 1536px */
+}
+
+/* Dark theme overrides */
+[data-theme="dark"] {
+  --color-primary: #31a1d3;
+  --color-secondary: #272b46;
+  --color-surface: #0b0f1a;
+  --color-offwhite: #f9f9f9;
+}
+
+/* App shell */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  @apply bg-surface text-offwhite antialiased;
+}
+
+/* Utilities */
+.container-responsive {
+  @apply max-w-[80rem] mx-auto px-4 sm:px-6 lg:px-8;
+}
+.site-header {
+  margin: 0;
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.card-dark {
+  @apply bg-secondary rounded-2xl border border-white/10 shadow-lg ring-1 ring-white/5 hover:ring-primary/30 transition;
+}
+[data-theme="light"] .card-dark {
+  border-color: rgba(0,0,0,0.10);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.06);
+}
+
+.btn-primary {
+  @apply inline-flex items-center justify-center gap-2 rounded-lg text-secondary font-semibold px-5 py-3 transition focus:outline-none focus:ring-2 focus:ring-primary/60 active:brightness-95 hover:brightness-110 shadow-md;
+  background-image: linear-gradient(135deg, var(--color-primary) 0%, #6ec8ee 100%);
+}
+.btn-secondary {
+  @apply inline-flex items-center justify-center gap-2 rounded-lg border border-white/20 text-offwhite px-5 py-3 hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-white/30 active:bg-white/5 transition;
+}
+[data-theme="light"] .btn-secondary {
+  border-color: #272b46;
+  color: #f9f9f9;
+  background-color: #272b46;
+}
+[data-theme="light"] .btn-secondary:hover {
+  filter: brightness(1.05);
+}
+[data-theme="light"] .btn-secondary:focus {
+  box-shadow: 0 0 0 2px rgba(49,161,211,0.4);
+}
+
+/* Primary button tuning for light mode */
+[data-theme="light"] .btn-primary {
+  color: #f9f9f9;
+  box-shadow: 0 8px 22px rgba(49,161,211,0.25);
+  background-image: none;
+  background-color: #272b46;
+  border: 1px solid #272b46;
+}
+[data-theme="light"] .btn-primary:hover {
+  filter: brightness(1.05);
+}
+
+.badge {
+  @apply inline-flex items-center gap-2 rounded-full border border-primary/40 bg-primary/10 text-primary px-3 py-1 text-xs font-medium;
+}
+
+.section {
+  @apply py-16 md:py-24;
+}
+
+.muted {
+  @apply text-offwhite;
+}
+
+.heading-gradient {
+  background: linear-gradient(90deg, var(--color-offwhite) 0%, #cfeefe 45%, #69c9ec 75%, var(--color-primary) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+[data-theme="light"] .heading-gradient {
+  background: linear-gradient(90deg, #272b46 0%, #31a1d3 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Links */
+a {
+  @apply text-primary underline-offset-4 hover:underline;
+}
+
+/* Buttons should not show underlines */
+.btn-primary,
+.btn-primary:hover,
+.btn-primary:focus,
+.btn-secondary,
+.btn-secondary:hover,
+.btn-secondary:focus {
+  text-decoration: none;
+}
+
+/* Custom background utility */
+.bg-grid-dark {
+  background-image: radial-gradient(circle at 1px 1px, rgba(49, 161, 211, 0.08) 1px, transparent 0);
+}
+
+/* Accent gradient overlays */
+.hero-accents {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background:
+    radial-gradient(1000px 600px at 20% -10%, rgba(49,161,211,0.25), transparent 60%),
+    radial-gradient(800px 500px at 80% 10%, rgba(110,200,238,0.20), transparent 60%);
+  pointer-events: none;
+}
+
+[data-theme="light"] .hero-accents {
+  background:
+    radial-gradient(900px 540px at 20% -10%, rgba(39,43,70,0.12), transparent 60%),
+    radial-gradient(700px 440px at 80% 10%, rgba(49,161,211,0.18), transparent 60%);
+}
+
+/* Light mode header background */
+[data-theme="light"] .site-header {
+  background-color: rgba(39,43,70,0.88); /* dark translucent #272b46 */
+  border-bottom-color: rgba(249,249,249,0.15);
+}
+[data-theme="light"] .site-header a {
+  color: #f9f9f9 !important;
+  text-decoration: none;
+}
+[data-theme="light"] .site-header a:hover {
+  opacity: 0.85;
+  text-decoration: none;
+}
+
+/* Elevated card variant with gradient ring */
+.card-elevated {
+  @apply relative rounded-2xl bg-secondary border border-white/10;
+}
+.card-elevated::before {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  border-radius: 1rem;
+  background: linear-gradient(135deg, rgba(49,161,211,0.35), rgba(255,255,255,0.08));
+  -webkit-mask: linear-gradient(#000, #000) content-box, linear-gradient(#000, #000);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  padding: 1px;
+  pointer-events: none;
+}
+
+/* Modern form controls */
+.input-base {
+  @apply w-full min-w-0 max-w-md sm:max-w-lg mx-auto rounded-lg border-2 border-white/70 bg-white/10 text-offwhite px-3 py-2 hover:border-white/80 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary/70 transition;
+}
+.input-base::placeholder {
+  color: rgba(249, 249, 249, 0.8);
+  opacity: 1;
+}
+[data-theme="light"] .input-base {
+  border-color: rgba(0,0,0,0.35);
+  background-color: rgba(39,43,70,0.05);
+  color: #0b0f1a;
+}
+[data-theme="light"] .input-base::placeholder {
+  color: rgba(11,15,26,0.55);
+}
+.select-base {
+  @apply w-full min-w-0 max-w-md sm:max-w-lg mx-auto rounded-lg border-2 border-white/50 bg-white/5 text-offwhite px-3 py-2 hover:border-white/60 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary/70 transition;
+}
+.chip {
+  @apply inline-flex items-center gap-2 rounded-full border-2 border-white/40 bg-white/5 px-3 py-1.5 text-sm text-offwhite hover:border-white/60 cursor-pointer select-none transition;
+}
+.chip[data-selected="true"] {
+  @apply border-primary/70 bg-primary/20;
+}
