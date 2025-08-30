@@ -52,6 +52,41 @@ const itemVariants = {
 
 export default function App() {
   const [menuOpen, setMenuOpen] = useState(false)
+  const [formData, setFormData] = useState({ name: '', email: '', message: '' })
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle')
+
+  const handleFormSubmit = async (e: React.FormEvent) => {
+    e.preventDefault()
+    setIsSubmitting(true)
+    setSubmitStatus('idle')
+    
+    try {
+      const response = await fetch('https://formspree.io/f/xeolavzw', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      })
+      
+      if (response.ok) {
+        setSubmitStatus('success')
+        setFormData({ name: '', email: '', message: '' })
+      } else {
+        setSubmitStatus('error')
+      }
+    } catch (error) {
+      setSubmitStatus('error')
+    } finally {
+      setIsSubmitting(false)
+    }
+  }
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target
+    setFormData(prev => ({ ...prev, [name]: value }))
+  }
 
   const stats: Stat[] = [
     { label: 'Cloud cost reduced', value: '30–60%' },
@@ -494,22 +529,68 @@ export default function App() {
               <div className="flex items-center gap-2"><Phone className="h-4 w-4 text-primary" aria-hidden /> <span>+1 (555) 123‑4567</span></div>
               <div className="flex items-center gap-2"><Globe2 className="h-4 w-4 text-primary" aria-hidden /> <span>Calgary • Remote‑friendly</span></div>
             </div>
-            <form className="card-dark p-6 max-w-xl w-full mx-auto grid gap-4" onSubmit={(e) => e.preventDefault()} aria-label="Contact form">
+            <form className="card-dark p-6 max-w-xl w-full mx-auto grid gap-4" onSubmit={handleFormSubmit} aria-label="Contact form">
               <div>
                 <label htmlFor="name" className="block text-sm font-medium text-offwhite">Name</label>
-                <input id="name" name="name" type="text" required className="mt-1 input-base" placeholder="Your name" />
+                <input 
+                  id="name" 
+                  name="name" 
+                  type="text" 
+                  required 
+                  className="mt-1 input-base" 
+                  placeholder="Your name"
+                  value={formData.name}
+                  onChange={handleInputChange}
+                />
               </div>
               <div>
                 <label htmlFor="email" className="block text-sm font-medium text-offwhite">Email</label>
-                <input id="email" name="email" type="email" required className="mt-1 input-base" placeholder="you@company.com" />
+                <input 
+                  id="email" 
+                  name="email" 
+                  type="email" 
+                  required 
+                  className="mt-1 input-base" 
+                  placeholder="you@company.com"
+                  value={formData.email}
+                  onChange={handleInputChange}
+                />
               </div>
               <div>
                 <label htmlFor="message" className="block text-sm font-medium text-offwhite">What are you building?</label>
-                <textarea id="message" name="message" required rows={4} className="mt-1 input-base" placeholder="ERP/CRM scope, data sources, timelines, success criteria" />
+                <textarea 
+                  id="message" 
+                  name="message" 
+                  required 
+                  rows={4} 
+                  className="mt-1 input-base" 
+                  placeholder="ERP/CRM scope, data sources, timelines, success criteria"
+                  value={formData.message}
+                  onChange={handleInputChange}
+                />
               </div>
-              <button type="submit" className="mt-2 btn-primary w-full sm:w-auto" aria-label="Send message">
-                Send message
-                <ArrowRight className="h-4 w-4" />
+              
+              {/* Status Messages */}
+              {submitStatus === 'success' && (
+                <div className="p-3 bg-green-500/20 border border-green-500/30 rounded-lg text-green-400 text-sm">
+                  Message sent successfully! We'll get back to you within one business day.
+                </div>
+              )}
+              
+              {submitStatus === 'error' && (
+                <div className="p-3 bg-red-500/20 border border-red-500/30 rounded-lg text-red-400 text-sm">
+                  Something went wrong. Please try again or contact us directly.
+                </div>
+              )}
+              
+              <button 
+                type="submit" 
+                className="mt-2 btn-primary w-full sm:w-auto disabled:opacity-50 disabled:cursor-not-allowed" 
+                aria-label="Send message"
+                disabled={isSubmitting}
+              >
+                {isSubmitting ? 'Sending...' : 'Send message'}
+                {!isSubmitting && <ArrowRight className="h-4 w-4" />}
               </button>
             </form>
           </div>
