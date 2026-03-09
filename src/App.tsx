@@ -52,7 +52,7 @@ const itemVariants = {
 
 export default function App() {
   const [menuOpen, setMenuOpen] = useState(false)
-  const [formData, setFormData] = useState({ name: '', email: '', message: '' })
+  const [formData, setFormData] = useState({ name: '', email: '', phone: '', message: '' })
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle')
 
@@ -72,7 +72,7 @@ export default function App() {
       
       if (response.ok) {
         setSubmitStatus('success')
-        setFormData({ name: '', email: '', message: '' })
+        setFormData({ name: '', email: '', phone: '', message: '' })
       } else {
         setSubmitStatus('error')
       }
@@ -525,8 +525,7 @@ export default function App() {
           </motion.div>
           <div className="mt-10 grid gap-10 lg:grid-cols-2 items-start">
             <div className="space-y-3 text-sm text-offwhite">
-              <div className="flex items-center gap-2"><Mail className="h-4 w-4 text-primary" aria-hidden /> <a className="hover:underline" href="mailto:hello@prairiesoft.example">hello@prairiesoft.example</a></div>
-              <div className="flex items-center gap-2"><Phone className="h-4 w-4 text-primary" aria-hidden /> <span>+1 (555) 123‑4567</span></div>
+              <div className="flex items-center gap-2"><Mail className="h-4 w-4 text-primary" aria-hidden /> <a className="hover:underline" href="mailto:prairiesoft@gmail.com">prairiesoft@gmail.com</a></div>
               <div className="flex items-center gap-2"><Globe2 className="h-4 w-4 text-primary" aria-hidden /> <span>Calgary • Remote‑friendly</span></div>
             </div>
             <form className="card-dark p-6 max-w-xl w-full mx-auto grid gap-4" onSubmit={handleFormSubmit} aria-label="Contact form">
@@ -553,6 +552,18 @@ export default function App() {
                   className="mt-1 input-base" 
                   placeholder="you@company.com"
                   value={formData.email}
+                  onChange={handleInputChange}
+                />
+              </div>
+              <div>
+                <label htmlFor="phone" className="block text-sm font-medium text-offwhite">Phone Number <span className="text-gray-400">(optional)</span></label>
+                <input 
+                  id="phone" 
+                  name="phone" 
+                  type="tel" 
+                  className="mt-1 input-base" 
+                  placeholder="+1 (555) 123-4567"
+                  value={formData.phone}
                   onChange={handleInputChange}
                 />
               </div>
