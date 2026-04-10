@@ -13,7 +13,6 @@ import {
   CheckCircle2,
   Quote,
   Mail,
-  Phone,
   Bot,
   Building2,
 } from 'lucide-react'
