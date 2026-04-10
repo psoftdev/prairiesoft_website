@@ -526,7 +526,7 @@ export default function App() {
           <div className="mt-10 grid gap-10 lg:grid-cols-2 items-start">
             <div className="space-y-3 text-sm text-offwhite">
               <div className="flex items-center gap-2"><Mail className="h-4 w-4 text-primary" aria-hidden /> <a className="hover:underline" href="mailto:prairiesoft@gmail.com">prairiesoft@gmail.com</a></div>
-              <div className="flex items-center gap-2"><Globe2 className="h-4 w-4 text-primary" aria-hidden /> <span>Calgary • Remote‑friendly</span></div>
+              <div className="flex items-center gap-2"><Globe2 className="h-4 w-4 text-primary" aria-hidden /> <span>Calgary • Lethbridge • Medicine hat • Remote‑friendly</span></div>
             </div>
             <form className="card-dark p-6 max-w-xl w-full mx-auto grid gap-4" onSubmit={handleFormSubmit} aria-label="Contact form">
               <div>
